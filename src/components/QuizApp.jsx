@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { quizData } from '../data/quizData';
-import ProgressBar from './ProgressBar';
-import QuestionCard from './QuestionCard';
-import Navigation from './Navigation';
-import ResultsView from './ResultsView';
+import React, { useState, useEffect } from "react";
+import { quizData } from "../data/quizData";
+import ProgressBar from "./ProgressBar";
+import QuestionCard from "./QuestionCard";
+import Navigation from "./Navigation";
+import ResultsView from "./ResultsView";
 
 const QuizApp = () => {
   const totalQuestions = quizData.length;
@@ -56,25 +56,29 @@ const QuizApp = () => {
   return (
     <div className="relative">
 
-      {/* Paw + bubble */}
-      <div className="absolute left-0 bottom-0 flex items-end" style={{ transform: 'translateY(50%)' }}>
-  <div className="relative">
-    <div className="bg-white border-2 border-gray-300 rounded-2xl rounded-bl-none px-4 py-2 mb-2 ml-12 shadow-md">
-      <p className="text-sm font-medium text-slate-700 whitespace-nowrap">
-        Best of Luck !
-      </p>
-    </div>
-    <img 
-      src="/src/assets/cat-paw.gif" 
-      alt="Cat Paw" 
-      className="w-24 h-24 object-contain"
-    />
-  </div>
-</div>
+      {/* PAW ONLY ON PAGE 1 */}
+      {currentIndex === 0 && (
+        <div className="absolute left-0 bottom-0 flex items-end" style={{ transform: "translateY(50%)" }}>
+          <div className="relative">
+            <div className="bg-white border-2 border-gray-300 rounded-2xl rounded-bl-none px-4 py-2 mb-2 ml-12 shadow-md">
+              <p className="text-sm font-medium text-slate-700">Best of Luck !</p>
+            </div>
+            <img
+              src="/src/assets/cat-paw.gif"
+              alt="Cat Paw"
+              className="w-24 h-24 object-contain"
+            />
+          </div>
+        </div>
+      )}
 
-
-      <h1 className="text-center text-4xl md:text-5xl lg:text-6xl font-serif italic font-semibold
-        bg-gradient-to-r from-[#15313D] to-[#3CABDA] bg-clip-text text-transparent mb-4">
+      <h1
+        className="text-center text-4xl md:text-5xl lg:text-6xl
+        font-serif italic font-semibold
+        bg-gradient-to-r from-[#15313D] to-[#3CABDA]
+        bg-clip-text text-transparent
+        mb-4"
+      >
         Test Your Knowledge
       </h1>
 
@@ -84,29 +88,20 @@ const QuizApp = () => {
 
       <ProgressBar total={totalQuestions} activeIndex={currentIndex} />
 
-      {/* Wrapper to keep Q + Buttons together */}
-      <div className="flex flex-col items-center w-full">
+      <QuestionCard
+        question={currentQuestion}
+        selectedIndex={answers[currentIndex]}
+        onSelect={handleSelect}
+      />
 
-        <QuestionCard
-          question={currentQuestion}
-          selectedIndex={answers[currentIndex]}
-          onSelect={handleSelect}
-        />
-
-        {/* Navigation moved directly below answers */}
-        <div className="w-full max-w-[600px] mt-2">
-          <Navigation
-            canPrev={currentIndex > 0}
-            canNext={answers[currentIndex] !== null}
-            isLast={currentIndex === totalQuestions - 1}
-            onPrev={goPrev}
-            onNext={goNext}
-            onSubmit={handleSubmit}
-          />
-        </div>
-
-      </div>
-
+      <Navigation
+        canPrev={currentIndex > 0}
+        canNext={currentIndex < totalQuestions - 1}
+        isLast={currentIndex === totalQuestions - 1}
+        onPrev={goPrev}
+        onNext={goNext}
+        onSubmit={handleSubmit}
+      />
     </div>
   );
 };
