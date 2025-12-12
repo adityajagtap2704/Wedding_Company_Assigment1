@@ -2,7 +2,7 @@ import React from "react";
 
 const Navigation = ({ canPrev, canNext, isLast, onPrev, onNext, onSubmit }) => {
   return (
-    <div className="mt-4 w-full flex justify-end">
+    <div className="w-full flex justify-end mt-6">
 
       {/* Previous Button */}
       {!isLast && (
@@ -25,7 +25,7 @@ const Navigation = ({ canPrev, canNext, isLast, onPrev, onNext, onSubmit }) => {
         </button>
       )}
 
-      {/* Submit Button (Only on last question) */}
+      {/* Submit Button */}
       {isLast && (
         <button
           type="button"

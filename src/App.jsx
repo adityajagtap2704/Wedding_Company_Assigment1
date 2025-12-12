@@ -24,8 +24,11 @@ const App = () => {
           shadow-xl
         "
       >
-        {/* INNER WHITE CARD */}
-        <div className="bg-white rounded-3xl shadow-2xl p-10 md:p-14 lg:p-20">
+        {/* ⭐ INNER MAIN CARD (updated color here) */}
+        <div
+          className="rounded-3xl shadow-2xl p-10 md:p-14 lg:p-20"
+          style={{ background: "#F4FDFF" }}  // ⬅ Updated background color
+        >
           <QuizApp />
         </div>
       </div>
