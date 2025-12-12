@@ -46,6 +46,7 @@ npm run preview
 Approximately 3-4 hours
 
 ## 🌐 Live Demo
+http://weddingcompanyassignment.s3-website.ap-south-1.amazonaws.com/
 
 [Your Vercel/Netlify URL]
 
